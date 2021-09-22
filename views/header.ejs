@@ -1,23 +1,19 @@
 <nav class="nav">
   <div>
-    DASystem
+    DA
   </div>
   <% if (locals.user) { %>
     <div>
-      <ul>
-        <li><a href='/'>Hello, <%= user.name %>!</a></li>
-        <li><a href='/'>About</a></li>
-        <li><a href='/login'>Main</a></li>
-        <li><a href='/logout'>Logout</a></li>
-      </ul>
+        <a href='/'>Hello, <%= user.name %>!</a>
+        <a href='/'>About</a>
+        <a href='/login'>Main</a>
+        <a href='/logout'>Logout</a>
     </div>
   <% } else { %>
     <div>
-      <ul>
-        <li><a href='/'>About</a></li>
-        <li><a href='/login'>Login</a></li>
-        <li><a href='/register'>Register</a></li>
-      </ul>
+        <a href='/'>About</a>
+        <a href='/login'>Login</a>
+        <a href='/register'>Register</a>
     </div>
   <% } %>
 </nav>
