@@ -1,5 +1,3 @@
-Node.js app
-
-NewFake
+'NewFake'
 
 This project was made with Node.js and Python.
