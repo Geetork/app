@@ -10,7 +10,8 @@ const user = require('./middleware/user');
 const register = require('./routes/register');
 const login = require('./routes/login');
 const messages = require('./middleware/messages');
-
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json')
 // port setup
 app.set('port', process.env.PORT || 3000);
 
@@ -27,7 +28,9 @@ app.use(methodOverride());
 app.use(cookieParser('your secret here'));
 app.use(session());
 app.use(messages);
-app.use(user);
+
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get('/', (req, res) => {
   res.render("index", {
