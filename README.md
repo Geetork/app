@@ -1,3 +1,3 @@
 'FakeNews'
-
-This project was made with Node.js and Python.
+  - fake news identifier
+  - JS, Python application
