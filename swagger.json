@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "title": "Fake News CRUD",
-    "description": "Fake Newa Application API",
+    "description": "Fake News Application API",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"

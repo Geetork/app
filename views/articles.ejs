@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title><%=title %></title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+
+    <div class="container">
+
+      <%- include("header") -%>
+      <div class="main">
+
+        <form action="/check-article" method="post">
+          <div>
+            <div>
+              <h1>Check News</h1>
+            </div>
+            <div>
+              <input class="input" type='text' name='article[title]' placeholder='title' />
+            </div>
+            <div>
+              <input class="input" type='text' name='article[content]' placeholder='content' />
+            </div>
+            <div>
+              <input class="input-button" type='submit' value='Check' />
+            </div>
+          </div>
+        </form>
+
+        <div class="articles">
+          <% articles.forEach(function(article) {%>
+            <div class="article">
+              <h2><%= article.title %></h2>
+              <p><%= article.content %></p>
+            </div>
+          <% }) %>
+        </div>
+
+      </div>
+      <div class="footer"><%- include("../public/footer.html") -%></div>
+
+    </div>
+  </body>
+</html>
