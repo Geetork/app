@@ -18,7 +18,7 @@
   "paths": {
     "/": {
       "get": {
-        "tags": ["Main page"],
+        "tags": ["Welcome page"],
         "summary": "Get the main page",
         "responses": {
           "200": {
