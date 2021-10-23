@@ -27,8 +27,9 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build --if-present
-    - uses: mr-smithers-excellent/docker-build-push@v5
-      name: Build and Push Docker Image
+    
+    - name: Build and Push Docker Image
+      uses: mr-smithers-excellent/docker-build-push@v5
       with:
         image: geetork/fake_news
         registry: docker.io
