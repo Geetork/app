@@ -46,14 +46,7 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/register', register.form);
-app.post('/register', register.submit);
 
-app.get('/login', login.form);
-app.post('/login', login.submit);
-app.get('/logout', login.logout);
-
-app.get('/articles', articles.list);
 
 app.listen(app.get('port'), () => {
   console.log('App started on port', app.get('port'))
