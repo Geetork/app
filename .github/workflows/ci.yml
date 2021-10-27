@@ -16,11 +16,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
-      - name: Create env file
-        run: |
-          touch .env
-          echo MONGODB_URI=${{ secrets.MONGODB_URI}} >> .env
-          cat .env
+        env:
+          MONGODB_URI=${{ secrets.MONGODB_URI}}
       - name: Deploy app to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
