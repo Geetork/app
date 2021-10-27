@@ -16,14 +16,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 async function start() {
   try {
-    await mongoose.connect('mongodb+srv://${{ secrets.MONGODB_USER }}:${{ secrets.MONGODB_PASSWORD}}0.c5iuq.mongodb.net/users', {
-      useNewUrlParser: true,
-      useFindAndModify: false
+    await mongoose.connect('mongodb+srv://${{ secrets.MONGODB_USER}}:${{secrets.MONGODB_PASSWORD }}@cluster0.c5iuq.mongodb.net/users?retryWrites=true&w=majority"');
+    app.get('/', (req, res) => {
+      res.render('index', {title: 'Welcome page'})
     });
-    // app.get('/', (req, res) => {
-    //   res.send('Hello World!');
-    //   res.end();
-    // });
     app.listen(app.get('port'), () => {
       console.log('App started on port', app.get('port'))
     });
