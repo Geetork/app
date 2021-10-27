@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 async function start() {
   try {
-    await mongoose.connect('mongodb+srv://admin:gjal78p@cluster0.c5iuq.mongodb.net/users', {
+    await mongoose.connect('mongodb+srv://${{ secrets.MONGODB_USER }}:${{ secrets.MONGODB_PASSWORD}}0.c5iuq.mongodb.net/users', {
       useNewUrlParser: true,
       useFindAndModify: false
     });
