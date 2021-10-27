@@ -1,15 +1,20 @@
 // modules setup
 const express = require('express');
 const mongoose = require('mongoose');
-const
+
 
 const app = express();
+
 // port setup
 app.set('port', process.env.PORT || 3000);
 
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs')
+
 async function start() {
   try {
-    await mongoose.connect('', {
+    await mongoose.connect('mongodb+srv://admin:gjal78p@cluster0.c5iuq.mongodb.net/users', {
       useNewUrlParser: true,
       useFindAndModify: false
     });
