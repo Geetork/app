@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 async function start() {
   try {
-    await mongoose.connect('mongodb+srv://${{ secrets.MONGODB_USER }}:${{ secrets.MONGODB_PASSWORD }}@cluster0.c5iuq.mongodb.net/users?retryWrites=true&w=majority"');
+    await mongoose.connect('mongodb+srv://admin:gjal78p@cluster0.c5iuq.mongodb.net/users?retryWrites=true&w=majority"');
     app.get('/', (req, res) => {
       res.render('index', {title: 'Welcome page'})
     });
