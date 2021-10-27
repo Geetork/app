@@ -2,9 +2,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+require('dotenv').config();
 
 const app = express();
-
 // port setup
 app.set('port', process.env.PORT || 3000);
 
@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 async function start() {
   try {
-    await mongoose.connect('mongodb+srv://${{ secrets.MONGODB_USER}}:${{secrets.MONGODB_PASSWORD }}@cluster0.c5iuq.mongodb.net/users?retryWrites=true&w=majority"');
+    await mongoose.connect(process.env.URI);
     app.get('/', (req, res) => {
       res.render('index', {title: 'Welcome page'})
     });
