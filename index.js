@@ -14,7 +14,7 @@ app.set('view engine', 'ejs')
 
 async function start() {
   try {
-    await mongoose.connect('mongodb+srv://admin:gjal78p@cluster0.c5iuq.mongodb.net/users', {
+    await mongoose.connect('mongodb+srv://${{ secrets.MONGODB_USER }}:${{ secrets.MONGODB_PASSWORD}}0.c5iuq.mongodb.net/users', {
       useNewUrlParser: true,
       useFindAndModify: false
     });
