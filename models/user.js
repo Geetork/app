@@ -1,87 +1,47 @@
-const redis = require('redis');
-const bcrypt = require('bcrypt');
-const db = redis.createClient();
+// modules setup
+const mongoose = require('mongoose');
+const crypto = require('crypto');
+
+// mongodb model setup
+const userSchema = new mongoose.Schema({
+  login: { type: String, required: true, unique: true },
+  password: { type: String, required: true }
+});
+
+const UserSchema = mongoose.model('users', userSchema);
 
 class User {
-  constructor(obj) {
-    for (let key in obj) {
-      this[key] = obj[key];
-    }
-  }
 
-  toJSON() {
-    return {
-      id: this.id,
-      name: this.name
-    };
-  }
+  constructor(login, password) {
+    this.login = login;
+    this.password = password;
+  };
 
-  save(cb) {
-    if (this.id) {
-      this.update(cb);
+  createUser(){
+    this.password = this.hashPassword();
+    return new UserSchema(this).save();
+  };
+
+  async checkUser() {
+    let doc = await UserSchema.findOne({login: this.login});
+    if ( doc.password === this.hashPassword() ){
+      console.log("User password is ok");
     } else {
-      db.incr('user:ids', (err, id) => {
-        if (err) return cb(err);
-        this.id = id;
-        this.hashPassword((err) => {
-          if (err) return cb(err);
-          this.update(cb);
-        });
-      });
-    }
-  }
+      console.log("Error wrong");
+    };
+  };
 
-  update(cb) {
-    const id = this.id;
-    db.set(`user:id:${this.name}`, id, (err) => {
-      if (err) return cb(err);
-      db.hmset(`user:${id}`, this, (err) => {
-        cb(err);
-      });
-    });
-  }
+  getUser() {
+    return UserSchema.findOne( {login: this.login} );
+  };
 
-  hashPassword(cb) {
-    bcrypt.genSalt(12, (err, salt) => {
-      if (err) return cb(err);
-      this.salt = salt;
-      bcrypt.hash(this.pass, salt, (err, hash) => {
-        if (err) return cb(err);
-        this.pass = hash;
-        cb();
-      });
-    });
-  }
+  hashPassword(){
+    let hash = crypto.createHash('sha256')
+                        .update(this.password)
+                        .digest('hex');
+    return hash;
+  };
 
-  static getByName(name, cb) {
-    User.getId(name, (err, id) => {
-      if (err) return cb(err);
-      User.get(id, cb);
-    });
-  }
-
-  static getId(name, cb) {
-    db.get(`user:id:${name}`, cb);
-  }
-
-  static get(id, cb) {
-    db.hgetall(`user:${id}`, (err, user) => {
-      if (err) return cb(err);
-      cb(null, new User(user));
-    });
-  }
-
-  static authenticate(name, pass, cb) {
-    User.getByName(name, (err, user) => {
-      if (err) return cb(err);
-      if (!user.id) return cb();
-      bcrypt.hash(pass, user.salt, (err, hash) => {
-        if (err) return cb(err);
-        if (hash == user.pass) return cb(null, user);
-        cb();
-      });
-    });
-  }
-}
+};
 
 module.exports = User;

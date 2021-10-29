@@ -5,19 +5,21 @@ exports.form = (req, res) => {
 };
 
 exports.submit = (req, res, next) => {
-  var data = req.body.user;
-  console.log('User:', req.body.user);
-  User.getByName(data.name, (err, user) => {
+  let data = req.body.user;
+
+  if ( data.getUser != null ) {};
+
+  User.getUser(data.login, (err, user) => {
     if (err) return next(err);
 
-    if (user.id) {
+    if (user.login) {
       res.error('Username already taken!');
       res.redirect('back');
     } else {
-      user = new User({ name: data.name, pass: data.pass });
+      user = new User({ login: data.login, password: data.password });
       user.save((err) => {
         if (err) return next(err);
-        req.session.uid = user.id;
+        req.session.user = user.id;
         res.redirect('/')
       });
     }
