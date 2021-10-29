@@ -31,8 +31,8 @@ class User {
     };
   };
 
-  getUser() {
-    return UserSchema.findOne( {login: this.login} );
+  static async getUser(obj) {
+    return Promise.resolve(UserSchema.findOne( {login: obj.login} ));
   };
 
   hashPassword(){

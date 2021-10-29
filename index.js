@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const MongoStore = require('connect-mongo');
 
 const User = require('./models/user');
+const user = require('./middleware/user');
 const register = require('./routes/register');
 
 // .env setup
@@ -40,25 +41,28 @@ app.use(session({
   })
 }));
 
+
 start();
 
-// handler setup for '/' route
-app.get('/', (req, res) => {
-  res.render("index", {
-    title: "Welcome page"
-  });
-});
+// handler setup for '/register' route
 app.get('/register', register.form);
 app.post('/register', register.submit);
-//
+
+
 // app.get('/login', login.form);
 // app.post('/login', login.submit);
 // app.get('/logout', login.logout);
 
-let user = new User('admin', 'admin');
-console.log(user.getUser());
-// user.getUser().then(if (this != null) {console.log('found')});
+// let user = new User('admn', 'admin');
+// user.getUser().then(console.log);
+// user.getUser().then((result) => {
+//   if (result != null) {
+//     console.log('found');
+//   };
+// });
 // if (user.getUser() != null) {console.log('found')};
+
+
 
 async function start() {
   try {
