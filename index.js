@@ -62,10 +62,6 @@ app.get('/logout', login.logout);
 
 app.get('/articles', articles.list);
 
-
-let user1 = new User('admin', 'admin');
-user1.authenticate().then(console.log);
-
 // mongodb connection setup
 async function start() {
   try {

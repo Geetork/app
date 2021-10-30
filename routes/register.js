@@ -6,7 +6,7 @@ exports.form = (req, res) => {
 
 exports.submit = (req, res, next) => {
   let data = req.body.user;
-
+  console.log(data);
   User.getUser(data).then((result) => {
     if ( result ) {
       res.error('Username already taken!');
