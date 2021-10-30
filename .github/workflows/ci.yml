@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
+        env:
+          URI=${{secrets.MONGODB_URI}}
       - name: Deploy app to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
