@@ -6,10 +6,11 @@ exports.form = (req, res) => {
 
 exports.submit = (req, res, next) => {
   const data = req.body.user;
-  User.authenticate(data.name, data.pass, (err, user) => {
-    if (err) return next(err);
-    if (user) {
-      req.session.uid = user.id;
+  let user = new User(data.login, data.password);
+
+  user.authenticate().then((result) => {
+    if (result) {
+      req.session.uid = user.login;
       res.redirect('/articles');
     } else {
       res.error('Sorry! invalid credentials.');

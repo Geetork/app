@@ -4,11 +4,15 @@ module.exports = (req, res, next) => {
   if (req.remoteUser) {
     res.locals.user = req.remoteUser;
   }
-  const uid = req.session.uid;
+
+  let uid = req.session.uid;
   if (!uid) return next();
-  User.get(uid, (err, user) => {
-    if (err) return next(err);
-    req.user = res.locals.user = user;
-    next();
+
+  User.get(uid).then((result) => {
+    if ( result ) {
+      let user = new User(result.login, result.password);
+      req.user = res.locals.user = user;
+      next();
+    };
   });
 };
