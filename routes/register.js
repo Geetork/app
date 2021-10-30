@@ -8,7 +8,7 @@ exports.submit = (req, res, next) => {
   let data = req.body.user;
 
   User.getUser(data).then((result) => {
-    if (result != null) {
+    if ( result ) {
       res.error('Username already taken!');
       res.redirect('back');
     } else {

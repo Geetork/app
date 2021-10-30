@@ -9,7 +9,10 @@ const MongoStore = require('connect-mongo');
 
 const User = require('./models/user');
 const user = require('./middleware/user');
+const messages = require('./middleware/messages');
 const register = require('./routes/register');
+const login = require('./routes/login');
+const articles = require('./routes/articles');
 
 // .env setup
 require('dotenv').config();
@@ -33,7 +36,7 @@ app.use(express.urlencoded({ extended: true }))
 
 // session setup
 app.use(session({
-  secret: 'foo',
+  secret: "foo",
   saveUninitialized: false, // don't create session until something stored
   resave: false, //don't save session if unmodified
   store: MongoStore.create({
@@ -41,29 +44,29 @@ app.use(session({
   })
 }));
 
+// using user middleware for sessions
+app.use(user);
+// using messages middleware
+app.use(messages);
 
 start();
 
-// handler setup for '/register' route
+// handler setup for /register route
 app.get('/register', register.form);
 app.post('/register', register.submit);
 
+// handler setup for /login route
+app.get('/login', login.form);
+app.post('/login', login.submit);
+app.get('/logout', login.logout);
 
-// app.get('/login', login.form);
-// app.post('/login', login.submit);
-// app.get('/logout', login.logout);
-
-// let user = new User('admn', 'admin');
-// user.getUser().then(console.log);
-// user.getUser().then((result) => {
-//   if (result != null) {
-//     console.log('found');
-//   };
-// });
-// if (user.getUser() != null) {console.log('found')};
+app.get('/articles', articles.list);
 
 
+let user1 = new User('admin', 'admin');
+user1.authenticate().then(console.log);
 
+// mongodb connection setup
 async function start() {
   try {
     await mongoose.connect(process.env.URI);

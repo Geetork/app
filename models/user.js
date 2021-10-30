@@ -17,22 +17,21 @@ class User {
     this.password = password;
   };
 
+  // adds user to mongodb
   createUser(){
     this.password = this.hashPassword();
     return new UserSchema(this).save();
   };
 
-  async checkUser() {
+  // checks credentials
+  async authenticate() {
     let doc = await UserSchema.findOne({login: this.login});
-    if ( doc.password === this.hashPassword() ){
-      console.log("User password is ok");
-    } else {
-      console.log("Error wrong");
+    if ( doc ) {
+      if ( doc.password === this.hashPassword() ){
+        this.password = this.hashPassword();
+        return this;
+      };
     };
-  };
-
-  static async getUser(obj) {
-    return Promise.resolve(UserSchema.findOne( {login: obj.login} ));
   };
 
   hashPassword(){
@@ -40,6 +39,16 @@ class User {
                         .update(this.password)
                         .digest('hex');
     return hash;
+  };
+
+  // gets user by login from mongodb
+  static async get(uid) {
+    return Promise.resolve(UserSchema.findOne( {login: uid} ));
+  };
+
+  // gets user by obj.login from mongodb
+  static async getUser(obj) {
+    return Promise.resolve(UserSchema.findOne( {login: obj.login} ));
   };
 
 };
