@@ -12,10 +12,11 @@ exports.submit = (req, res, next) => {
       res.error('Username already taken!');
       res.redirect('back');
     } else {
+      console.log(result);
       let user = new User(data.login, data.password);
       user.createUser();
       req.session.uid = user.login;
-      res.redirect('/')
+      res.redirect('/articles')
     };
   });
 };

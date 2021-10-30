@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const path = require('path');
 const crypto = require('crypto');
 const session = require('express-session');
-const bodyParser = require('body-parser');
 const MongoStore = require('connect-mongo');
 
 const User = require('./models/user');
