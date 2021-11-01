@@ -29,6 +29,24 @@
           </div>
         </form>
 
+        <script type="text/javascript">
+          let url = 'https://oauth.vk.com/authorize?client_id=7973474&display=page&redirect_uri=http://localhost:80/articles&scope=friends,wall&response_type=code&v=5.131&state=123456&revoke=1';
+          // try {
+          //   let service_token = 'ae5f2a12ae5f2a12ae5f2a125eae268070aae5fae5f2a12cf3a76f64cf65e3aaabd9c53';
+          //   redirect('https://oauth.vk.com/authorize?client_id=7973474&display=page&redirect_uri=http://localhost:80/articles&scope=friends,wall&response_type=code&v=5.131&state=123456&revoke=1');
+          //   }
+          // catch(err) {
+          //   alert(err);
+          // };
+          
+          fetch(url,
+            {
+              method: 'GET',
+              headers: { 'Content-Type': 'application/json' }
+            }
+          ).then(resp => resp.text()).then(console.log);
+        </script>
+
         <div class="articles">
           <script>
             const token = 'ae5f2a12ae5f2a12ae5f2a125eae268070aae5fae5f2a12cf3a76f64cf65e3aaabd9c53';
