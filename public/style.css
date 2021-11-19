@@ -21,16 +21,17 @@ h1 {
 .container {
   display: grid;
   grid-template-areas:
-    "nav nav nav"
-    "main main main"
-    "footer footer footer";
-  grid-template-rows: 40px auto 40px;
+    "nav nav"
+    "main-welcome-sidebar main-welcome-action"
+    "footer footer";
+  grid-template-rows: 40px 1fr 40px;
+  grid-template-columns: 500px 1fr;
+  background-color: #fafafa;
+  grid-gap: 10px;
 }
 
 .nav, .footer {
   background-color: #363636;
-  display: -webkit-flex;
-  -webkit-justify-content: center;
 }
 
 .nav {
@@ -38,19 +39,23 @@ h1 {
 }
 
 .nav div, .footer div {
-  display: -webkit-flex;
-  -webkit-justify-content: center;
-  -webkit-align-self: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+  align-items: center;
 }
 
-.nav div a {
-  -webkit-align-self: center;
-  padding: 0 35px 0px 25px;
+.main-welcome-sidebar, .main-welcome-action {
+  min-height: calc(100vh - 100px);
+  background-color: white;
 }
 
-.main {
-  grid-area: main;
-  min-height: calc(100vh - 80px);
+.main-welcome-sidebar {
+  grid-area: main-welcome-sidebar;
+}
+
+.main-welcome-action {
+  grid-area: main-welcome-action;
 }
 
 .main form{
@@ -82,27 +87,12 @@ h1 {
   grid-area: footer;
 }
 
-.main-welcome-container {
+/* .main-welcome-container {
   background-color: #e3e3e3;
   display: inline-flex;
   width: 100%;
   min-height: 100%;
-}
-
-.main-welcome-sidebar {
-  background-color: #fafafa;
-  flex-basis: 40%;
-  margin: 9px 5px 9px 9px;
-}
-
-.main-welcome-action {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: #fafafa;
-  flex-basis: 60%;
-  margin: 9px 9px 9px 5px;
-}
+} */
 
 .main-welcome-sidebar h1,
 .main-welcome-sidebar p {
@@ -132,7 +122,7 @@ h1 {
 }
 
 .main-welcome-action img {
-  width: 55%;
+  width: 50%;
   align-self: center;
 }
 
