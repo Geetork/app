@@ -11,20 +11,20 @@
 
       <%- include("header") -%>
 
-      <div class="main">
+      <div class="main-welcome-sidebar">
         <form action="/register" method="post">
           <div>
             <div>
               <h1><%=title %></h1>
             </div>
             <div>
-              <input class="input" type='text' name='user[login]' placeholder='Username' />
+              <input class="input" type='text' name='user[login]' placeholder='Имя пользователя' />
             </div>
             <div>
-              <input class="input" type='password' name='user[password]' placeholder='Password' />
+              <input class="input" type='password' name='user[password]' placeholder='Пароль' />
             </div>
             <div>
-              <input class="input-button" type='submit' value='Sign Up' />
+              <input class="input-button" type='submit' value='Зарегистрироваться' />
             </div>
             <div class="message">
               <%- include("messages") -%>
@@ -32,8 +32,7 @@
           </div>
         </form>
       </div>
-
-      <div class="footer"><%- include("../public/footer.html") -%></div>
+      <%- include("../public/footer.html") -%>
     </div>
   </body>
 </html>

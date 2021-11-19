@@ -10,21 +10,21 @@
     <div class="container">
 
       <%- include("header") -%>
-      <div class="main">
+      <div class="main-welcome-sidebar">
 
         <form action="/check-article" method="post">
           <div>
             <div>
-              <h1>Check News</h1>
+              <h1>Проверь свою новостную статью</h1>
             </div>
             <div>
-              <input class="input" type='text' name='article[title]' placeholder='title' />
+              <input class="input" type='text' name='article[title]' placeholder='Заголовок статьи' />
             </div>
             <div>
-              <input class="input" type='text' name='article[content]' placeholder='content' />
+              <input class="input" type='text' name='article[content]' placeholder='Текст статьи' />
             </div>
             <div>
-              <input class="input-button" type='submit' value='Check' />
+              <input class="input-button" type='submit' value='Проверить' />
             </div>
           </div>
         </form>
@@ -38,7 +38,7 @@
           // catch(err) {
           //   alert(err);
           // };
-          
+
           fetch(url,
             {
               method: 'GET',
@@ -46,19 +46,19 @@
             }
           ).then(resp => resp.text()).then(console.log);
         </script>
-
-        <div class="articles">
-          <% articles.forEach(function(article) {%>
-            <div class="article">
-              <h2><%= article.title %></h2>
-              <p><%= article.content %></p>
-            </div>
-          <% }) %>
-        </div>
-
       </div>
-      <div class="footer"><%- include("../public/footer.html") -%></div>
-
+      <div class="main-welcome-action">
+        <script>
+          const token = 'ae5f2a12ae5f2a12ae5f2a125eae268070aae5fae5f2a12cf3a76f64cf65e3aaabd9c53';
+        </script>
+        <% articles.forEach(function(article) {%>
+          <div class="article">
+            <h2><%= article.title %></h2>
+            <p><%= article.content %></p>
+          </div>
+        <% }) %>
+      </div>
+      <%- include("../public/footer.html") -%>
     </div>
   </body>
 </html>

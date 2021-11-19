@@ -6,7 +6,7 @@
 
 body {
   font-family: "Calibri", sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   width: 100vw;
   min-height: 100vh;
@@ -38,11 +38,22 @@ h1 {
   grid-area: nav;
 }
 
-.nav div, .footer div {
+.footer div {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 40px;
+  grid-gap: 100px;
+  align-items: center;
+  justify-items: center;
+}
+
+.nav div {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 20px;
+  grid-template-rows: 40px;
+  grid-gap: 0px;
   align-items: center;
+  justify-items: center;
 }
 
 .main-welcome-sidebar, .main-welcome-action {
@@ -58,41 +69,27 @@ h1 {
   grid-area: main-welcome-action;
 }
 
-.main form{
+.main-welcome-sidebar form {
+  background-color: #fafafa;
   display: grid;
   place-content: center center;
-
+  width: 500px;
+  min-height: calc(100vh - 100px);
+  border-radius: 15px;
 }
 
-.main form > div {
-  background-color: #fff;
-  display: grid;
-  place-content: center center;
-  width: 400px;
-  height: 500px;
-  border-radius: 20px;
-}
-
-.main form > div > div {
+.main-welcome-sidebar form > div > div {
   padding: 5px;
 }
 
-.main form div:last-child {
+.message {
   color: red;
-
 }
 
 .footer {
   color: #b8b8b8;
   grid-area: footer;
 }
-
-/* .main-welcome-container {
-  background-color: #e3e3e3;
-  display: inline-flex;
-  width: 100%;
-  min-height: 100%;
-} */
 
 .main-welcome-sidebar h1,
 .main-welcome-sidebar p {
@@ -145,8 +142,8 @@ a:active {
 
 .input, .input-button, .message {
   display: block;
-  width: 300px;
-  height: 40px;
+  width: 400px;
+  height: 50px;
   padding: 10px;
   font-size: 16px;
   font-weight: 400;
@@ -155,7 +152,7 @@ a:active {
 }
 
 .input {
-  background-color: #fff;
+  background-color: #fafafa;
   color: #212529;
   border: 1px solid #e3e3e3;
 }
@@ -163,6 +160,7 @@ a:active {
 .input-button {
   background-color: #4a78ed;
   color: #fff;
+  height: 50px;
   border: 1px solid #5998d4;
 }
 

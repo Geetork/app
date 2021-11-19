@@ -1,7 +1,7 @@
 const User = require('../models/user');
 
 exports.form = (req, res) => {
-  res.render('register', { title: 'Register' });
+  res.render('register', { title: 'Регистрация' });
 };
 
 exports.submit = (req, res, next) => {
@@ -9,7 +9,7 @@ exports.submit = (req, res, next) => {
   console.log(data);
   User.getUser(data).then((result) => {
     if ( result ) {
-      res.error('Username already taken!');
+      res.error('Имя пользователя уже занято!');
       res.redirect('back');
     } else {
       console.log(result);
