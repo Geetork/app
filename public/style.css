@@ -48,12 +48,13 @@ h1 {
 }
 
 .nav div {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 40px;
-  grid-gap: 0px;
-  align-items: center;
-  justify-items: center;
+  padding-left: calc(100vw / 4);
+}
+
+.nav div a {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 2px 60px 0 60px;
 }
 
 .main-welcome-sidebar, .main-welcome-action {
