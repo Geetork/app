@@ -1,9 +1,9 @@
 <nav class="nav">
   <% if (locals.user) { %>
     <div>
-      <a href="/"><img class="icon" src="img/icon.png"></a>
-      <a href='/'>Привет, <%= user.login %>!</a>
-      <a href='/'>Главная</a>
+      <a href="/articles"><img class="icon" src="img/icon.png"></a>
+      <a href='/articles'>Привет, <%= user.login %>!</a>
+      <a href='/articles'>Главная</a>
       <a href='/logout'>Выйти</a>
     </div>
   <% } else { %>

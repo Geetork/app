@@ -1,7 +1,7 @@
 const User = require('../models/user');
 
 exports.form = (req, res) => {
-  res.render('login', {title: 'Login'})
+  res.render('login', {title: 'Войти'})
 }
 
 exports.submit = (req, res, next) => {
@@ -13,7 +13,7 @@ exports.submit = (req, res, next) => {
       req.session.uid = user.login;
       res.redirect('/articles');
     } else {
-      res.error('Sorry! invalid credentials.');
+      res.error('Извините! Данные неверны.');
       res.redirect('back');
     }
   });

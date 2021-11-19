@@ -1,7 +1,7 @@
 exports.list = (req, res) => {
-  let articles = [{"title": "article1", "content": "discription1"}];
+  let articles = [{"title": " ", "content": " "}];
   res.render('articles', {
-    title: 'Articles',
+    title: 'Новостные статьи',
     articles: articles
   })
 };
