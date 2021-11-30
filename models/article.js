@@ -1,5 +1,7 @@
 // modules setup
 const mongoose = require('mongoose');
+const fs = require('fs');
+const converter = require('json-2-csv');
 
 // mongodb model setup
 const articleSchema = new mongoose.Schema({
@@ -24,6 +26,15 @@ class Article {
 
   static async findArticles(uid) {
     return Promise.resolve(ArticleSchema.find( {owner: uid} ));
+  };
+
+  static async jsonToCSV(article) {
+    converter.json2csv(article, (err, csv) => {
+      if (err) {
+        throw err;
+      };
+      fs.writeFileSync(`${article.owner}.csv`, csv);
+    });
   };
 };
 
