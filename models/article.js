@@ -1,21 +1,11 @@
-// modules setup
-const mongoose = require('mongoose');
-
-// mongodb model setup
-const articleSchema = new mongoose.Schema({
-  owner: { type: String, required: true },
-  title: { type: String, required: true },
-  content: { type: String, required: true }
-});
-
-const ArticleSchema = mongoose.model('article', articleSchema);
+const redis = require('redis');
+const db = redis.createClient();
 
 class Article {
-
-  constructor( owner, title, content ) {
-    this.owner = owner;
-    this.title = title;
-    this.content = content;
+  constructor(obj) {
+    for (let key in obj) {
+      this[key] = obj[key];
+    };
   };
 
   save(cb) {
