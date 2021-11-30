@@ -23,7 +23,7 @@ class Article {
   };
 
   static async findArticles(uid) {
-    return Promise.resolve(ArticleSchema.find( {login: uid} ));
+    return Promise.resolve(ArticleSchema.find( {owner: uid} ));
   };
 };
 

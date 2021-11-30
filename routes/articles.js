@@ -2,7 +2,7 @@ const Article = require('../models/article');
 
 exports.list = (req, res) => {
   Article.findArticles(req.session.uid).then((result) => {
-    console.log(result);
+    console.log(req.session.uid);
     res.render('articles', {
       title: 'Новостные статьи',
       articles: result
