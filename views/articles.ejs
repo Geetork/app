@@ -12,16 +12,16 @@
       <%- include("header") -%>
       <div class="main-welcome-sidebar">
 
-        <form action="/check-article" method="post">
+        <form action="/articles" method="post">
           <div>
             <div>
-              <h1>Проверь свою новостную статью</h1>
+              <h2>Проверь статью</h2>
             </div>
             <div>
               <input class="input" type='text' name='article[title]' placeholder='Заголовок статьи' />
             </div>
             <div>
-              <input class="input" type='text' name='article[content]' placeholder='Текст статьи' />
+              <textarea type='text' name='article[content]' placeholder=''></textarea>
             </div>
             <div>
               <input class="input-button" type='submit' value='Проверить' />
@@ -29,28 +29,8 @@
           </div>
         </form>
 
-        <script type="text/javascript">
-          let url = 'https://oauth.vk.com/authorize?client_id=7973474&display=page&redirect_uri=http://localhost:80/articles&scope=friends,wall&response_type=code&v=5.131&state=123456&revoke=1';
-          // try {
-          //   let service_token = 'ae5f2a12ae5f2a12ae5f2a125eae268070aae5fae5f2a12cf3a76f64cf65e3aaabd9c53';
-          //   redirect('https://oauth.vk.com/authorize?client_id=7973474&display=page&redirect_uri=http://localhost:80/articles&scope=friends,wall&response_type=code&v=5.131&state=123456&revoke=1');
-          //   }
-          // catch(err) {
-          //   alert(err);
-          // };
-
-          fetch(url,
-            {
-              method: 'GET',
-              headers: { 'Content-Type': 'application/json' }
-            }
-          ).then(resp => resp.text()).then(console.log);
-        </script>
       </div>
       <div class="main-welcome-action">
-        <script>
-          const token = 'ae5f2a12ae5f2a12ae5f2a125eae268070aae5fae5f2a12cf3a76f64cf65e3aaabd9c53';
-        </script>
         <% articles.forEach(function(article) {%>
           <div class="article">
             <h2><%= article.title %></h2>

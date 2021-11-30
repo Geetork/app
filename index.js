@@ -7,6 +7,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 
 const User = require('./models/user');
+const Article = require('./models/article');
 const user = require('./middleware/user');
 const messages = require('./middleware/messages');
 const register = require('./routes/register');
@@ -59,6 +60,7 @@ app.get('/login', login.form);
 app.post('/login', login.submit);
 app.get('/logout', login.logout);
 
+app.post('/articles', articles.submit);
 app.get('/articles', articles.list);
 
 // mongodb connection setup
