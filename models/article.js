@@ -18,16 +18,12 @@ class Article {
     this.content = content;
   };
 
-  save(cb) {
-    const articleJSON = JSON.stringify(this);
-    db.lpush(
-      'entries',
-      articleJSON,
-      (err) => {
-        if (err) return cb(err);
-        cb();
-      }
-    );
+  async save() {
+    return Promise.resolve(ArticleSchema(this).save());
+  };
+
+  static async findArticles(uid) {
+    return Promise.resolve(ArticleSchema.find( {login: uid} ));
   };
 };
 
