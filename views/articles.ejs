@@ -11,7 +11,6 @@
 
       <%- include("header") -%>
       <div class="main-welcome-sidebar articles-page">
-
         <form action="/articles" method="post">
           <div>
             <div>
@@ -28,7 +27,6 @@
             </div>
           </div>
         </form>
-
       </div>
       <div class="main-welcome-action">
         <% if ( articles == '' ) { %>
@@ -37,7 +35,21 @@
         <% articles.forEach(function(article) {%>
           <div class="article">
             <h2><%= article.title %></h2>
-            <p><%= article.content %></p>
+            <p><%= chopContent(article.content) %></p>
+
+            <% function chopContent(article) {
+              var i = 0;
+              var data = article;
+              var content = '';
+              while (i < 25) {
+                if ( !data[i] ) { break; };
+                content += data[i];
+                i++;
+              };
+              content += '...';
+              return content;
+            }; %>
+
           </div>
         <% }) %>
       </div>
