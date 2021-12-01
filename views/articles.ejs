@@ -24,13 +24,16 @@
               <textarea type='text' name='article[content]' placeholder=''></textarea>
             </div>
             <div>
-              <input class="input-button" type='submit' value='Проверить' />
+              <input class="check-input-button" type='submit' value='Проверить' />
             </div>
           </div>
         </form>
 
       </div>
       <div class="main-welcome-action">
+        <% if ( articles == '' ) { %>
+          <h3>У вас нет проверенных статей...</h3>
+        <% }; %>
         <% articles.forEach(function(article) {%>
           <div class="article">
             <h2><%= article.title %></h2>

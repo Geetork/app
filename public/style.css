@@ -13,9 +13,26 @@ body {
 }
 
 h1, h2 {
-  font-weight: 600;
+  font-weight: 500;
   color: black;
   font-size: 20px;
+}
+
+h3 {
+  color: #b37337;
+  font-size: 20px;
+  font-weight: 400;
+  display: block;
+  width: calc(100vw - 530px);
+  height: 40px;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  border-radius: 10px;
+  background-color: #edbf646a;
+  border: 1px solid #edbf646a;
+  margin: 10px;
 }
 
 .container {
@@ -73,7 +90,7 @@ h1, h2 {
 .main-welcome-sidebar form {
   background-color: #fafafa;
   display: grid;
-  place-content: center center;
+  padding: calc((100vh - 100px) / 3) 0px 0px 20px;
   width: 500px;
   min-height: calc(100vh - 100px);
   border-radius: 15px;
@@ -82,7 +99,7 @@ h1, h2 {
 .articles-page form {
   background-color: white;
   display: grid;
-  place-content: center center;
+  padding: 40px 0px 0px 45px;
   width: 500px;
   min-height: calc(100vh - 100px);
   border-radius: 15px;
@@ -93,6 +110,17 @@ h1, h2 {
 }
 
 .message {
+  dispay: block;
+  font-size: 20px;
+  margin: 5px;
+  background-color: #d4552f4e;
+  border-radius: 15px;
+  width: 500px;
+  border: 1px solid #ed4d1c;
+}
+
+.message p {
+  margin: auto;
   color: red;
 }
 
@@ -137,10 +165,6 @@ h1, h2 {
   align-self: center;
 }
 
-p {
-  color: black;
-}
-
 a {
     color: #b8b8b8;
     text-decoration: none;
@@ -154,7 +178,7 @@ a:active {
   color: #8c8c8c;
 }
 
-.input, .input-button, .message {
+.input, .input-button, .message , .check-input-button{
   display: block;
   width: 400px;
   height: 50px;
@@ -163,6 +187,14 @@ a:active {
   font-weight: 400;
   line-height: 1;
   border-radius: 10px;
+}
+
+.check-input-button {
+  background-color: #edbf646a;
+  border: 1px solid #edbf646a;
+  color: #b37337;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 textarea {
@@ -210,6 +242,10 @@ textarea {
 
 .input-button:hover, textarea:focus {
   background-color: #537fed;
+}
+
+.check-input-button:hover {
+  background-color: #ebbc607d;
 }
 
 .input:focus, textarea:focus {
