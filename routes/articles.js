@@ -16,3 +16,32 @@ exports.submit = (req, res, next) => {
   article.save();
   res.redirect('/articles');
 };
+
+exports.showfull = (req, res, next) => {
+  let id = req.params[0];
+  Article.findArticles(req.session.uid).then((result) => {
+    let i = 0;
+    let article = '';
+    if ( result[i].id = id ) {
+      article = result[i];
+    } else {
+      while ( result[i].id != id) {
+        article = result[i];
+        i++;
+      };
+    }
+    res.render('fullarticle', {
+      title: article.title,
+      articles: result,
+      article: article
+    });
+  });
+};
+
+exports.delete = (req, res) => {
+  console.log(req);
+  let id = req.params[0];
+  Article.deleteArticleById(id).then(() => {
+    res.send('Delete request');
+  });
+};
