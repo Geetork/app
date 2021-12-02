@@ -13,7 +13,9 @@
       <div class="main-welcome-sidebar">
         <h4><%= article.title %></h4>
         <p class='full-article'><%= article.content %></p>
-        <a class='article-delete-button' href='/articles/article<%= article.id%>/delete'>Удалить</a>
+        <form class='article-delete-form' action="/articles/article<%= article.id%>" method="post">
+          <input class="article-delete-button" type="submit" name="" value="Удалить">
+        </form>
       </div>
       <div class="main-welcome-action">
         <% if ( articles == '' ) { %>

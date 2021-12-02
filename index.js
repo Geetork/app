@@ -65,7 +65,7 @@ app.post('/articles', articles.submit);
 app.get('/articles', articles.list);
 
 app.get('/articles/article*', articles.showfull);
-app.post('/articles/article*/delete', articles.delete);
+app.post('/articles/article*', articles.delete);
 
 // mongodb connection setup
 async function start() {

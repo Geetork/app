@@ -11,7 +11,7 @@
 
       <%- include("header") -%>
       <div class="main-welcome-sidebar articles-page">
-        <form action="/articles" method="post">
+        <form class='register-login-article-form' action="/articles" method="post">
           <div>
             <div>
               <h2>Проверь статью</h2>
@@ -28,7 +28,7 @@
           </div>
         </form>
       </div>
-      <div class="main-welcome-action">
+      <div class="main-welcome-action scroll">
         <% if ( articles == '' ) { %>
           <h3>У вас нет проверенных статей...</h3>
         <% }; %>

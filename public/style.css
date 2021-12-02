@@ -108,7 +108,21 @@ h4 {
   grid-area: main-welcome-action;
 }
 
-.main-welcome-sidebar form {
+body::-webkit-scrollbar {
+  width: 3px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #363636;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #edbf646a;
+  border-radius: 5px;
+  border: 1px solid #edbf646a;
+}
+
+.main-welcome-sidebar .register-login-article-form {
   background-color: #fafafa;
   display: grid;
   padding: calc((100vh - 100px) / 3) 0px 0px 20px;
@@ -117,7 +131,7 @@ h4 {
   border-radius: 15px;
 }
 
-.articles-page form {
+.articles-page .register-login-article-form {
   background-color: white;
   display: grid;
   padding: 40px 0px 0px 45px;
@@ -187,8 +201,8 @@ h4 {
 }
 
 .nav a {
-    color: #b8b8b8;
-    text-decoration: none;
+  color: #b8b8b8;
+  text-decoration: none;
 }
 
 .nav a:hover {
@@ -231,7 +245,7 @@ h4 {
   right: 0;
   bottom: 0;
   margin: 7px;
-  font-size: 10px;
+  font-size: 9px;
   color: red;
   width: 50px;
   height: 20px;
@@ -239,7 +253,7 @@ h4 {
   background-color: #d4552f4e;
   border: 1px solid #d4552f4e;
   text-decoration: none;
-  padding: 2px 0px 0px 7px;
+  padding: 0px;
 }
 
 .article-delete-button:hover {
