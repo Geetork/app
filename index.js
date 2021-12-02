@@ -60,8 +60,12 @@ app.get('/login', login.form);
 app.post('/login', login.submit);
 app.get('/logout', login.logout);
 
+// handler setup for /articles route
 app.post('/articles', articles.submit);
 app.get('/articles', articles.list);
+
+app.get('/articles/article*', articles.showfull);
+app.post('/articles/article*', articles.delete);
 
 // mongodb connection setup
 async function start() {

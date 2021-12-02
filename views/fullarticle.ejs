@@ -3,32 +3,21 @@
   <head>
     <meta charset="utf-8">
     <title><%=title %></title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="/style.css" />
   </head>
   <body>
 
     <div class="container">
 
       <%- include("header") -%>
-      <div class="main-welcome-sidebar articles-page">
-        <form class='register-login-article-form' action="/articles" method="post">
-          <div>
-            <div>
-              <h2>Проверь статью</h2>
-            </div>
-            <div>
-              <input class="input" type='text' name='article[title]' placeholder='Заголовок статьи' />
-            </div>
-            <div>
-              <textarea type='text' name='article[content]' placeholder=''></textarea>
-            </div>
-            <div>
-              <input class="check-input-button" type='submit' value='Проверить' />
-            </div>
-          </div>
+      <div class="main-welcome-sidebar">
+        <h4><%= article.title %></h4>
+        <p class='full-article'><%= article.content %></p>
+        <form class='article-delete-form' action="/articles/article<%= article.id%>" method="post">
+          <input class="article-delete-button" type="submit" name="" value="Удалить">
         </form>
       </div>
-      <div class="main-welcome-action scroll">
+      <div class="main-welcome-action">
         <% if ( articles == '' ) { %>
           <h3>У вас нет проверенных статей...</h3>
         <% }; %>

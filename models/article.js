@@ -28,6 +28,10 @@ class Article {
     return Promise.resolve(ArticleSchema.find( {owner: uid} ));
   };
 
+  static async deleteArticleById(id) {
+    return Promise.resolve(ArticleSchema.deleteOne( {_id: id} ));
+  };
+
   static async jsonToCSV(article) {
     converter.json2csv(article, (err, csv) => {
       if (err) {

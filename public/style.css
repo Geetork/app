@@ -35,6 +35,26 @@ h3 {
   margin: 10px;
 }
 
+h4 {
+  font-size: 30px;
+  font-weight: 300;
+  color: #b37337;
+  padding: 0px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  width: 400px;
+  margin: 30px;
+}
+
+.full-article {
+  font-size: 14px;
+  padding: 0px;
+}
+
+.full-article-form {
+  background-color: white;
+}
+
 .container {
   display: grid;
   grid-template-areas:
@@ -81,13 +101,28 @@ h3 {
 
 .main-welcome-sidebar {
   grid-area: main-welcome-sidebar;
+  position: relative;
 }
 
 .main-welcome-action {
   grid-area: main-welcome-action;
 }
 
-.main-welcome-sidebar form {
+body::-webkit-scrollbar {
+  width: 3px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #363636;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #edbf646a;
+  border-radius: 5px;
+  border: 1px solid #edbf646a;
+}
+
+.main-welcome-sidebar .register-login-article-form {
   background-color: #fafafa;
   display: grid;
   padding: calc((100vh - 100px) / 3) 0px 0px 20px;
@@ -96,7 +131,7 @@ h3 {
   border-radius: 15px;
 }
 
-.articles-page form {
+.articles-page .register-login-article-form {
   background-color: white;
   display: grid;
   padding: 40px 0px 0px 45px;
@@ -165,16 +200,16 @@ h3 {
   align-self: center;
 }
 
-a {
-    color: #b8b8b8;
-    text-decoration: none;
+.nav a {
+  color: #b8b8b8;
+  text-decoration: none;
 }
 
-a:hover {
+.nav a:hover {
   color: #c7c7c7;
 }
 
-a:active {
+.nav a:active {
   color: #8c8c8c;
 }
 
@@ -187,6 +222,47 @@ a:active {
   font-weight: 400;
   line-height: 1;
   border-radius: 10px;
+}
+
+.article-button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 7px;
+  font-size: 10px;
+  color: #b37337;
+  width: 50px;
+  height: 20px;
+  border-radius: 6px;
+  background-color: #edbf646a;
+  border: 1px solid #edbf646a;
+  text-decoration: none;
+  padding: 4px 0px 0px 9px;
+}
+
+.article-delete-button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 7px;
+  font-size: 9px;
+  color: red;
+  width: 50px;
+  height: 20px;
+  border-radius: 6px;
+  background-color: #d4552f4e;
+  border: 1px solid #d4552f4e;
+  text-decoration: none;
+  padding: 0px;
+}
+
+.article-delete-button:hover {
+  background-color: #b84b2a4e;
+}
+
+a .article-button:hover {
+  color: #b37337;
+  padding: 5px;
 }
 
 .check-input-button {
@@ -209,6 +285,7 @@ textarea {
 }
 
 .article {
+  position: relative;
   display: block;
   width: calc(100vw - 530px);
   height: 100px;
@@ -244,7 +321,7 @@ textarea {
   background-color: #537fed;
 }
 
-.check-input-button:hover {
+.check-input-button:hover, .article-button:hover {
   background-color: #ebbc607d;
 }
 
