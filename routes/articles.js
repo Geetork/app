@@ -38,10 +38,10 @@ exports.showfull = (req, res, next) => {
   });
 };
 
-exports.delete = (req, res) => {
-  console.log(req);
+exports.delete = (req, res, next) => {
+  coondole.log(req);
   let id = req.params[0];
   Article.deleteArticleById(id).then(() => {
-    res.send('Delete request');
+    res.redirect('/articles');
   });
 };

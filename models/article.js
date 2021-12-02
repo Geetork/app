@@ -29,7 +29,7 @@ class Article {
   };
 
   static async deleteArticleById(id) {
-    return Promise.resolve(ArticleSchema.deleteOne( {id: id} ));
+    return Promise.resolve(ArticleSchema.deleteOne( {_id: id} ));
   };
 
   static async jsonToCSV(article) {
