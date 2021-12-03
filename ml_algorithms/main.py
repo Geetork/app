@@ -1,6 +1,6 @@
 import sys
 
-def chopText(content):
+def checkArticle(content):
     print ('false')
 
-chopText(sys.argv[1])
+checkArticle(sys.argv[1])

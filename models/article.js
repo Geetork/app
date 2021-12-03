@@ -31,8 +31,6 @@ class Article {
         pythonOptions: ['-u'],
         args: [data],
       };
-
-      // wrap it in a promise, and `await` the result
       const result = await new Promise((resolve, reject) => {
         PythonShell.run('ml_algorithms/main.py', options, (err, results) => {
           if (err) return reject(err);
