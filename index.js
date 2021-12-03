@@ -5,7 +5,6 @@ const path = require('path');
 const crypto = require('crypto');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
-const {spawn} = require('child_process');
 
 const User = require('./models/user');
 const Article = require('./models/article');
@@ -82,11 +81,3 @@ async function start() {
     console.log(e);
   };
 };
-
-let pyScript = spawn("python", ["main.py"]);
-pyScript.stdout.on('data', (data) => {
-  console.log(data);
-});
-pyScript.on('close', (code) => {
-  console.log(`child process exited with code ${code}`);
-});

@@ -1,7 +1,6 @@
 import sys
 
-# def chopText(content):
-#     print(content)
-#     return 1
+def chopText(content):
+    print 'false'
 
-print("hello")
+chopText(sys.argv[1])

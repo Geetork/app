@@ -2,13 +2,14 @@
 const mongoose = require('mongoose');
 const fs = require('fs');
 const converter = require('json-2-csv');
-const spawn = require('child_process').spawn;
+const {PythonShell} = require('python-shell');
 
 // mongodb model setup
 const articleSchema = new mongoose.Schema({
   owner: { type: String, required: true },
   title: { type: String, required: true },
-  content: { type: String, required: true }
+  content: { type: String, required: true },
+  tag: { type: String, required: false}
 });
 
 const ArticleSchema = mongoose.model('article', articleSchema);
@@ -19,14 +20,20 @@ class Article {
     this.owner = owner;
     this.title = title;
     this.content = content;
+    this.tag = 'true';
   };
 
   async save() {
-    // let process = spawn('python', ['/ml_algorithms/main.py', this.content]);
-    // process.stdout.on('data', (data) => {
-    // console.log(data);
-    // this.content = data;
-    // });
+    const options = {
+      mode: 'text',
+      args: [this.content],
+    };
+
+    PythonShell.run('ml_algorithms/main.py', options, (err, results) => {
+      if (err) throw (err);
+      this.tag = results;
+    });
+    console.log(this.tag);
     return Promise.resolve(ArticleSchema(this).save());
   };
 
