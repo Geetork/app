@@ -44,11 +44,17 @@ h4 {
   border-bottom-style: solid;
   width: 400px;
   margin: 30px;
+  word-break: break-all;
 }
 
 .full-article {
   font-size: 14px;
   padding: 0px;
+}
+
+p .full-article {
+  display: block;
+  width: 350px;
 }
 
 .full-article-form {
@@ -179,6 +185,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .main-welcome-sidebar p {
+  word-break: break-all;
   margin-top: 9px;
 }
 
@@ -298,6 +305,7 @@ textarea {
   color: #212529;
   border: 1px solid #e3e3e3;
   margin: 10px;
+  word-break: break-all;
 }
 
 .input, textarea {

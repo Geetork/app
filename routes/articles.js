@@ -12,6 +12,7 @@ exports.list = (req, res) => {
 exports.submit = (req, res, next) => {
   const data = req.body.article;
   let article = new Article(req.session.uid, data.title, data.content);
+
   Article.jsonToCSV(article);
   article.save();
   res.redirect('/articles');
@@ -30,7 +31,6 @@ exports.showfull = (req, res, next) => {
       };
       article = result[i];
     };
-    console.log(article);
     res.render('fullarticle', {
       title: article.title,
       articles: result,
