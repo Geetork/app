@@ -22,14 +22,14 @@ exports.showfull = (req, res, next) => {
   Article.findArticles(req.session.uid).then((result) => {
     let i = 0;
     let article = '';
-    if ( result[i].id = id ) {
+    if ( result[i].id === id ) {
       article = result[i];
     } else {
       while ( result[i].id != id) {
-        article = result[i];
         i++;
       };
-    }
+      article = result[i];
+    };
     res.render('fullarticle', {
       title: article.title,
       articles: result,
