@@ -22,14 +22,15 @@ exports.showfull = (req, res, next) => {
   Article.findArticles(req.session.uid).then((result) => {
     let i = 0;
     let article = '';
-    if ( result[i].id = id ) {
+    if ( result[i].id === id ) {
       article = result[i];
     } else {
       while ( result[i].id != id) {
-        article = result[i];
         i++;
       };
-    }
+      article = result[i];
+    };
+    console.log(article);
     res.render('fullarticle', {
       title: article.title,
       articles: result,
@@ -39,7 +40,6 @@ exports.showfull = (req, res, next) => {
 };
 
 exports.delete = (req, res, next) => {
-  console.log(req);
   let id = req.params[0];
   Article.deleteArticleById(id).then(() => {
     res.redirect('/articles');

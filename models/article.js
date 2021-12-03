@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 const fs = require('fs');
 const converter = require('json-2-csv');
+const { spawn } = require('child_process');
 
 // mongodb model setup
 const articleSchema = new mongoose.Schema({
@@ -21,6 +22,13 @@ class Article {
   };
 
   async save() {
+    // let process = await spawn('python.exe', ['/ml_algorithms/main.py', this.content]);
+    // process.stdout.on('data', function(data) {
+    //
+    //     this.content = data;
+    //     console.log(data);
+    //
+    // } );
     return Promise.resolve(ArticleSchema(this).save());
   };
 
