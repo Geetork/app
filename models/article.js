@@ -24,17 +24,28 @@ class Article {
   };
 
   async save() {
-    const options = {
-      mode: 'text',
-      args: [this.content],
-    };
+    let data = this.content;
+    async function runPy(data) {
+      const options = {
+        mode: 'text',
+        pythonOptions: ['-u'],
+        args: [data],
+      };
 
-    PythonShell.run('ml_algorithms/main.py', options, (err, results) => {
-      if (err) throw (err);
-      this.tag = results;
+      // wrap it in a promise, and `await` the result
+      const result = await new Promise((resolve, reject) => {
+        PythonShell.run('ml_algorithms/main.py', options, (err, results) => {
+          if (err) return reject(err);
+          return resolve(results);
+        });
+      });
+      console.log(result);
+      return result;
+    };
+    runPy(data).then((res) => {
+      this.tag = res.toString();
+      return Promise.resolve(ArticleSchema(this).save());
     });
-    console.log(this.tag);
-    return Promise.resolve(ArticleSchema(this).save());
   };
 
   static async findArticles(uid) {

@@ -1,6 +1,6 @@
 import sys
 
 def chopText(content):
-    print 'false'
+    print ('false')
 
 chopText(sys.argv[1])
