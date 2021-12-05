@@ -13,6 +13,8 @@ const messages = require('./middleware/messages');
 const register = require('./routes/register');
 const login = require('./routes/login');
 const articles = require('./routes/articles');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json')
 
 // .env setup
 require('dotenv').config();
@@ -33,6 +35,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // body-parsing middleware (e.g. to read req.body)
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // session setup
 app.use(session({

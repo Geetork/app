@@ -9,7 +9,7 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "host": "localhost:3000",
+  "host": "localhost:80",
   "basePath": "/",
   "schemes": ["http"],
   "consumes": ["application/json"],
