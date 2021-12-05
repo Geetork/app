@@ -20,7 +20,18 @@
               <input class="input" type='text' name='article[title]' placeholder='Заголовок статьи' />
             </div>
             <div>
-              <textarea type='text' name='article[content]' placeholder=''></textarea>
+              <textarea type='text' name='article[content]' placeholder='Текст статьи'></textarea>
+            </div>
+            <div class='fileinputs'>
+              <input type="file" class='inputfile' id="file-selector" name='article[picture]' accept=".jpg, .jpeg, .png">
+              <label for="file-selector">Картинка...</label>
+              <script>
+                const fileSelector = document.getElementById('file-selector');
+                fileSelector.addEventListener('change', (event) => {
+                  const file = event.target.files[0];
+                  console.log(file);
+                });
+              </script>
             </div>
             <div>
               <input class="check-input-button" type='submit' value='Проверить' />
