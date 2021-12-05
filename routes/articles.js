@@ -12,9 +12,8 @@ exports.list = (req, res) => {
 exports.submit = (req, res, next) => {
   const data = req.body.article;
   let article = new Article(req.session.uid, data.title, data.content);
-
-  Article.jsonToCSV(article);
   article.save();
+  Article.jsonToCSV(article);
   res.redirect('/articles');
 };
 
