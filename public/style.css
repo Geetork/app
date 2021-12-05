@@ -220,12 +220,13 @@ body::-webkit-scrollbar-thumb {
   color: #8c8c8c;
 }
 
-.input, .input-button, .message , .check-input-button{
+.input, .input-button, .message , .check-input-button {
   display: block;
+  font-family: "Calibri", sans-serif;
   width: 400px;
   height: 50px;
   padding: 10px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1;
   border-radius: 10px;
@@ -245,6 +246,34 @@ body::-webkit-scrollbar-thumb {
   border: 1px solid #edbf646a;
   text-decoration: none;
   padding: 4px 0px 0px 9px;
+  cursor: pointer;
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+    display: block;
+    border: 1px solid #edbf646a;
+    font-size: 14px;
+    font-weight: 400;
+    background-color: #edbf646a;
+    display: inline-block;
+    padding: 5px;
+    border-radius: 6px;
+    color: #b37337;
+    cursor: pointer;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: #ebbc607d;
 }
 
 .article-delete-button {
@@ -261,6 +290,7 @@ body::-webkit-scrollbar-thumb {
   border: 1px solid #d4552f4e;
   text-decoration: none;
   padding: 0px;
+  cursor: pointer;
 }
 
 .article-delete-button:hover {
@@ -278,10 +308,12 @@ a .article-button:hover {
   color: #b37337;
   font-size: 14px;
   font-weight: 400;
+  cursor: pointer;
 }
 
 textarea {
   display: block;
+  font-family: "Calibri", sans-serif;
   width: 400px;
   height: 300px;
   padding: 10px;
@@ -323,6 +355,7 @@ textarea {
   color: #fff;
   height: 50px;
   border: 1px solid #5998d4;
+  cursor: pointer;
 }
 
 .input-button:hover, textarea:focus {

@@ -11,10 +11,20 @@ exports.list = (req, res) => {
 
 exports.submit = (req, res, next) => {
   const data = req.body.article;
-  let article = new Article(req.session.uid, data.title, data.content);
-  article.save();
-  Article.jsonToCSV(article);
-  res.redirect('/articles');
+  if ( !data.content ) {
+    console.log(data.picture);
+    data.content = 'Картинка добавлена';
+    Article.textRecogintion(data.content).then((result) => {
+      let article = new Article(req.session.uid, data.title, data.content);
+      article.save();
+      res.redirect('/articles');
+    });
+  } else {
+    let article = new Article(req.session.uid, data.title, data.content);
+    article.save();
+    res.redirect('/articles');
+  };
+  // Article.jsonToCSV(article);
 };
 
 exports.showfull = (req, res, next) => {

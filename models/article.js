@@ -29,6 +29,7 @@ class Article {
     async function runPy(data) {
       const options = {
         mode: 'text',
+        pythonPath: 'ml_algorithms/.venv/Scripts/python.exe',
         pythonOptions: ['-u'],
         args: [data],
       };
@@ -53,6 +54,30 @@ class Article {
 
   static async deleteArticleById(id) {
     return Promise.resolve(ArticleSchema.deleteOne( {_id: id} ));
+  };
+
+  static async textRecogintion(picture) {
+    let content = '';
+    async function runPy(data) {
+      const options = {
+        mode: 'json',
+        pythonPath: 'ml_algorithms/.venv/Scripts/python.exe',
+        pythonOptions: ['-u'],
+        args: [picture],
+      };
+      const result = await new Promise((resolve, reject) => {
+        PythonShell.run('ml_algorithms/image_to_text/text_recognition.py', options, (err, results) => {
+          if (err) return reject(err);
+          return resolve(results);
+        });
+      });
+      console.log(result);
+      return result;
+    };
+    runPy(picture).then((res) => {
+      content = res.toString();
+      return content;
+    });
   };
 
   static async jsonToCSV(article) {
