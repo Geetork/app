@@ -20,7 +20,7 @@
               <input class="input" type='text' name='article[title]' placeholder='Заголовок статьи' />
             </div>
             <div>
-              <textarea type='text' name='article[content]' placeholder='Текст статьи'></textarea>
+              <textarea type='text' id='textarea-base64' name='article[content]' placeholder='Текст статьи'></textarea>
             </div>
             <div class='fileinputs'>
               <input type="file" class='inputfile' id="file-selector" name='article[picture]' accept=".jpg, .jpeg, .png" onchange="encodeImageFileAsURL(this)">
@@ -42,7 +42,8 @@
                   reader.onloadend = function() {
                     console.log('RESULT', reader.result);
                     file.url = reader.result;
-                    console.log(file);
+                    console.log(JSON.stringify(file));
+                    document.getElementById('textarea-base64').innerHTML = JSON.stringify(file);
 
                   }
                   reader.readAsDataURL(file);

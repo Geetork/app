@@ -56,14 +56,14 @@ class Article {
     return Promise.resolve(ArticleSchema.deleteOne( {_id: id} ));
   };
 
-  static async textRecogintion(picture) {
+  static async textRecogintion(encodedPicture) {
     let content = '';
     async function runPy(data) {
       const options = {
-        mode: 'json',
+        mode: 'text',
         pythonPath: 'ml_algorithms/.venv/Scripts/python.exe',
         pythonOptions: ['-u'],
-        args: [picture],
+        args: [data],
       };
       const result = await new Promise((resolve, reject) => {
         PythonShell.run('ml_algorithms/image_to_text/text_recognition.py', options, (err, results) => {
@@ -74,7 +74,7 @@ class Article {
       console.log(result);
       return result;
     };
-    runPy(picture).then((res) => {
+    runPy(encodedPicture).then((res) => {
       content = res.toString();
       return content;
     });
