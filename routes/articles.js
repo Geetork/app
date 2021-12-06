@@ -13,7 +13,7 @@ exports.submit = (req, res, next) => {
   const data = req.body.article;
   console.log(data);
   if ( !data.content ) {
-    console.log(data.picture);
+    console.log(data.picture.file);
     data.content = 'Картинка добавлена';
     Article.textRecogintion(data.content).then((result) => {
       let article = new Article(req.session.uid, data.title, data.content);

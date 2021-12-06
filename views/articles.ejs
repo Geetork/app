@@ -42,8 +42,6 @@
                   reader.onloadend = function() {
                     console.log('RESULT', reader.result);
                     file.url = reader.result;
-                    const fileSelector = document.getElementById('file-selector');
-                    fileSelector.value = file;
                     console.log(file);
 
                   }
