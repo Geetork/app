@@ -23,14 +23,32 @@
               <textarea type='text' name='article[content]' placeholder='Текст статьи'></textarea>
             </div>
             <div class='fileinputs'>
-              <input type="file" class='inputfile' id="file-selector" name='article[picture]' accept=".jpg, .jpeg, .png">
+              <input type="file" class='inputfile' id="file-selector" name='article[picture]' accept=".jpg, .jpeg, .png" onchange="encodeImageFileAsURL(this)">
               <label for="file-selector">Картинка...</label>
               <script>
-                const fileSelector = document.getElementById('file-selector');
-                fileSelector.addEventListener('change', (event) => {
-                  const file = event.target.files[0];
-                  console.log(file);
-                });
+                // const fileSelector = document.getElementById('file-selector');
+                // fileSelector.addEventListener('change', (event) => {
+                //   const file = event.target.files[0];
+                //   const reader = new FileReader();
+                //   reader.onloadend = function() {
+                //     console.log('RESULT', reader.result);
+                //   };
+                //   reader.readAsDataURL(file);
+                // });
+
+                function encodeImageFileAsURL(element) {
+                  const file = element.files[0];
+                  const reader = new FileReader();
+                  reader.onloadend = function() {
+                    console.log('RESULT', reader.result);
+                    file.url = reader.result;
+                    const fileSelector = document.getElementById('file-selector');
+                    fileSelector.value = file;
+                    console.log(file);
+
+                  }
+                  reader.readAsDataURL(file);
+                }
               </script>
             </div>
             <div>

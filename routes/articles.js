@@ -11,6 +11,7 @@ exports.list = (req, res) => {
 
 exports.submit = (req, res, next) => {
   const data = req.body.article;
+  console.log(data);
   if ( !data.content ) {
     console.log(data.picture);
     data.content = 'Картинка добавлена';
