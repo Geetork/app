@@ -19,16 +19,17 @@ def thresholding(image):
 
 def get_text_from_image(data):
     base64_img_bytes = data.encode('utf-8')
-    with open('ml_algorithms/image_to_text/decoded_image2.jpeg', 'wb') as file_to_save:
+    with open('ml_algorithms/image_to_text/decoded_image2.jpg', 'wb') as file_to_save:
         decoded_image_data = base64.decodebytes(base64_img_bytes)
         file_to_save.write(decoded_image_data)
-        img = cv2.imread('ml_algorithms/image_to_text/decoded_image.jpeg')
-        pre_img = thresholding(get_grayscale(img))
-        custom_config = r'-l eng+rus --psm 6 --oem 3 --tessdata-dir "OCR/tessdata"'
-        text = pytesseract.image_to_string(pre_img, config=custom_config)
-        print(text)
-    if os.path.isfile('ml_algorithms/image_to_text/decoded_image.jpeg'):
-        os.remove('ml_algorithms/image_to_text/decoded_image.jpeg')
+    img = cv2.imread('ml_algorithms/image_to_text/decoded_image2.jpg')
+    if os.path.isfile('ml_algorithms/image_to_text/decoded_image2.jpg'):
+        os.remove('ml_algorithms/image_to_text/decoded_image2.jpg')
+    print(img)
+    pre_img = thresholding(get_grayscale(img))
+    custom_config = r'-l eng+rus --psm 6 --oem 3 --tessdata-dir "OCR/tessdata"'
+    text = pytesseract.image_to_string(pre_img, config=custom_config)
+    print(text)
 
 
 code = (sentInput[sentInput.find(",") + 1:])
