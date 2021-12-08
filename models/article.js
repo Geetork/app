@@ -79,8 +79,7 @@ class Article {
       pyScript.end();
       return result;
     };
-    content = runPy(encodedPicture);
-    return content;
+    return Promise.resolve(runPy(encodedPicture));
   };
 
   static async jsonToCSV(article) {
