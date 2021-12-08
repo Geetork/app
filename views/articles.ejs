@@ -42,8 +42,9 @@
                   reader.onloadend = function() {
                     console.log('RESULT', reader.result);
                     file.url = reader.result;
-                    console.log(JSON.stringify(file));
-                    document.getElementById('textarea-base64').innerHTML = JSON.stringify(file);
+                    // console.log(JSON.stringify(file));
+                    console.log(file.url)
+                    document.getElementById('textarea-base64').innerHTML = file.url;
 
                   }
                   reader.readAsDataURL(file);
