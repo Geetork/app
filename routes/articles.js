@@ -11,11 +11,9 @@ exports.list = (req, res) => {
 
 exports.submit = (req, res, next) => {
   const data = req.body.article;
-  if ( !data.content ) {
-    console.log(data.picture);
-    data.content = 'Картинка добавлена';
+  if ( data.picture ) {
     Article.textRecogintion(data.content).then((result) => {
-      let article = new Article(req.session.uid, data.title, data.content);
+      let article = new Article(req.session.uid, data.title, result);
       article.save();
       res.redirect('/articles');
     });

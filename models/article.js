@@ -56,28 +56,30 @@ class Article {
     return Promise.resolve(ArticleSchema.deleteOne( {_id: id} ));
   };
 
-  static async textRecogintion(picture) {
+  static async textRecogintion(encodedPicture) {
     let content = '';
     async function runPy(data) {
       const options = {
-        mode: 'json',
+        mode: 'text',
         pythonPath: 'ml_algorithms/.venv/Scripts/python.exe',
-        pythonOptions: ['-u'],
-        args: [picture],
+        pythonOptions: ['-u']
       };
-      const result = await new Promise((resolve, reject) => {
-        PythonShell.run('ml_algorithms/image_to_text/text_recognition.py', options, (err, results) => {
-          if (err) return reject(err);
-          return resolve(results);
+      const pyScript = new PythonShell('ml_algorithms/image_to_text/text_recognition.py', options);
+      pyScript.send(data);
+
+      let result = await new Promise((resolve, reject) => {
+        pyScript.on('message', function (message) {
+          // received a message sent from the Python script (a simple "print" statement)
+          console.log(message);
+          return resolve(message);
         });
       });
-      console.log(result);
+
+      // end the input stream and allow the process to exit
+      pyScript.end();
       return result;
     };
-    runPy(picture).then((res) => {
-      content = res.toString();
-      return content;
-    });
+    return Promise.resolve(runPy(encodedPicture));
   };
 
   static async jsonToCSV(article) {
