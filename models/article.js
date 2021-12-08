@@ -57,41 +57,8 @@ class Article {
   };
 
   static async textRecogintion(encodedPicture) {
-    // let content = '';
-    // console.log(encodedPicture);
-    // async function runPy(data) {
-    //   const options = {
-    //     mode: 'json',
-    //     pythonPath: 'ml_algorithms/.venv/Scripts/python.exe',
-    //     pythonOptions: ['-u']
-    //   };
-    //   const pyScript = new PythonShell('ml_algorithms/image_to_text/text_recognition.py', options);
-    //   pyScript.send(data);
-    //   // end the input stream and allow the process to exit
-    //   pyScript.end(function (err,code,signal) {
-    //     if (err) throw err;
-    //     console.log('The exit code was: ' + code);
-    //     console.log('The exit signal was: ' + signal);
-    //     console.log('finished');
-    //   });
-    //
-    //   const result = await new Promise((resolve, reject) => {
-    //     PythonShell.run('ml_algorithms/image_to_text/text_recognition.py', options, (err, results) => {
-    //       if (err) return reject(err);
-    //       return resolve(results);
-    //     });
-    //   });
-    //   console.log(result);
-    //   return result;
-    // };
-    //
-    // runPy(encodedPicture).then((res) => {
-    //   content = res.toString();
-    //   return content;
-    // });
-
     let content = '';
-    function runPy(data) {
+    async function runPy(data) {
       const options = {
         mode: 'text',
         pythonPath: 'ml_algorithms/.venv/Scripts/python.exe',
@@ -100,35 +67,20 @@ class Article {
       const pyScript = new PythonShell('ml_algorithms/image_to_text/text_recognition.py', options);
       pyScript.send(data);
 
-      pyScript.on('message', function (message) {
-        // received a message sent from the Python script (a simple "print" statement)
-        console.log(message);
+      let result = await new Promise((resolve, reject) => {
+        pyScript.on('message', function (message) {
+          // received a message sent from the Python script (a simple "print" statement)
+          console.log(message);
+          return resolve(message);
+        });
       });
+
       // end the input stream and allow the process to exit
       pyScript.end();
+      return result;
     };
-    runPy(encodedPicture);
-
-    // async function runPy(data) {
-    //   const options = {
-    //     mode: 'text',
-    //     pythonPath: 'ml_algorithms/.venv/Scripts/python.exe',
-    //     pythonOptions: ['-u'],
-    //     args: [data],
-    //   };
-    //   const result = await new Promise((resolve, reject) => {
-    //     PythonShell.run('ml_algorithms/image_to_text/text_recognition.py', options, (err, results) => {
-    //       if (err) return reject(err);
-    //       return resolve(results);
-    //     });
-    //   });
-    //   console.log(result);
-    //   return result;
-    // };
-    // runPy(encodedPicture).then((res) => {
-    //   content = res.toString();
-    //   return content;
-    // });
+    content = runPy(encodedPicture);
+    return content;
   };
 
   static async jsonToCSV(article) {
